@@ -19,11 +19,11 @@ import some from 'lodash/some';
 import uniq from 'lodash/uniq';
 import { resolve } from 'path';
 import { Token, TokenExtensionsType, TokenListEnumSchema } from './constants';
-import parseEthereumLists from '../parse/parse-ethereum-lists';
-import parseOverrideFile from '../parse/chef-overrides';
-import parseContractMap from '../parse/parse-contract-map';
-import parseSVGIconTokenFiles from '../parse/svg-icons';
-import parseTokenLists from '../parse/token-lists';
+import parseEthereumLists from './parse/parse-ethereum-lists';
+import parseOverrideFile from './parse/chef-overrides';
+import parseContractMap from './parse/parse-contract-map';
+import parseSVGIconTokenFiles from './parse/svg-icons';
+import parseTokenLists from './parse/token-lists';
 import { deeplyTrimAllTokenStrings, sortTokens, writeToDisk } from './parser';
 
 import * as Types from './constants';
@@ -38,7 +38,7 @@ function normalizeList(list: any[]) {
 }
 
 // Entry point
-(async function () {
+(async function() {
   const contractMapTokens = await parseContractMap();
   const [uniqueEthereumListTokens, duplicateEthereumListTokens] = await parseEthereumLists();
   const sushiswapOverrides = await parseOverrideFile();
@@ -99,21 +99,24 @@ function normalizeList(list: any[]) {
 
       let { chainId = 1, color, decimals, name, shadowColor, symbol } = token;
 
-      const isSushiBar = sources.preferred.map(Object.keys).flat().includes(tokenAddress);
+      const isSushiBar = sources.preferred
+        .map(Object.keys)
+        .flat()
+        .includes(tokenAddress);
 
       if (isSushiBar) {
         const logoData = svgIcons.find((item) => item.symbol === symbol);
         color = logoData?.color;
       }
+
       /**
-       *
        * @extends TokenExtensionsType
        */
 
       const extensions: TokenExtensionsType = {
         color: overrideToken?.color || color,
-        isOnsenActive: overrideToken?.isisOnsen ? true : undefined,
-        isSushiBar: isSushiBar || overrideToken?.isisOnsen ? true : undefined,
+        isChefCurated: overrideToken?.isCurated ? true : undefined,
+        isVerified: isSushiBar || overrideToken?.isCurated ? true : undefined,
         shadowColor: overrideToken?.shadowColor || shadowColor,
       };
 
@@ -147,8 +150,8 @@ function normalizeList(list: any[]) {
   );
 
   console.log(
-    '# of "isOnsenActive" tokens: ',
-    filter(tokens, matchesProperty('extensions.isOnsenActive', true)).length
+    '# of "isCuratedActive" tokens: ',
+    filter(tokens, matchesProperty('extensions.isCuratedActive', true)).length
   );
   console.log(
     '# of "isSushiBar" tokens: ',

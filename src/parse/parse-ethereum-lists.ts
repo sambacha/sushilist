@@ -69,5 +69,7 @@ export async function parseEthereumListsTokenFiles(): Promise<Token[]> {
  */
 export default async function parseEthereumLists(): Promise<Token[][]> {
   await fetchRepository(ETHEREUM_LISTS_REPO, ETHEREUM_LISTS_OUTPUT_PATH);
-  return parseEthereumListsTokenFiles().then(resolveDeprecations).then(partitionByUniqueness);
+  return parseEthereumListsTokenFiles()
+    .then(resolveDeprecations)
+    .then(partitionByUniqueness);
 }

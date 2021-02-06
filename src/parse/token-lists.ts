@@ -4,8 +4,14 @@ import { TOKEN_LISTS, TokenListEnum, TokenListEnumSchema } from '../constants';
 import { reduceArrayToObject } from '../utils';
 
 export const TokenListStore = z.object({
-  tags: z.any().array().optional(),
-  tokens: z.any().array().optional(),
+  tags: z
+    .any()
+    .array()
+    .optional(),
+  tokens: z
+    .any()
+    .array()
+    .optional(),
 });
 export type TokenListStoreType = z.infer<typeof TokenListStore>;
 export const TokenListStoreRecord = z.record(TokenListStore);

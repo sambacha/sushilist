@@ -1,11 +1,11 @@
 import { getAddress } from '@ethersproject/address';
 import mapKeys from 'lodash/mapKeys';
 import { resolve } from 'path';
-import { parseJsonFile } from '../src/parser';
+import { parseJsonFile } from '../parser';
 
 export type OverrideToken = {
   color?: string;
-  isOnsen?: boolean;
+  isCurated?: boolean;
   name?: string;
   symbol?: string;
   shadowColor?: string;

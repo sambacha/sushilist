@@ -12,7 +12,10 @@ export const ETHEREUM_LISTS_OUTPUT_PATH = resolve(tmpdir(), 'ethereum-lists/toke
  * @todo add semver or hash of the fetched JSON object
  */
 
-export const TokenListItemSchema = z.string().url().nonempty();
+export const TokenListItemSchema = z
+  .string()
+  .url()
+  .nonempty();
 export type TokenListItem = z.infer<typeof TokenListItemSchema>;
 export const TokenListTypeSchema = z.record(TokenListItemSchema);
 export type TokenListType = z.infer<typeof TokenListTypeSchema>;
@@ -58,7 +61,7 @@ export const TokenDeprecationSchema = z.object({
 
 export const TokenExtensionsSchema = z.object({
   color: z.string().optional(),
-  isRainbowCurated: z.boolean().optional(),
+  isChefCurated: z.boolean().optional(),
   isVerified: z.boolean().optional(),
   shadowColor: z.string().optional(),
 });
