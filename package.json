@@ -8,9 +8,6 @@
     "dist",
     "src"
   ],
-  "engines": {
-    "node": ">=10"
-  },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build && node dist",
@@ -63,6 +60,6 @@
     "path": "^0.12.7",
     "request": "^2.88.2",
     "simple-git": "^2.21.0",
-    "zod": "^3.0.0-alpha.4"
+    "zod": "^2.0.0-beta.16"
   }
 }

@@ -29,7 +29,7 @@ import { deeplyTrimAllTokenStrings, sortTokens, writeToDisk } from './parser';
 import * as Types from './constants';
 export { Types };
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '1';
 
 console.log(' 🍣 rolling up the token list ');
 

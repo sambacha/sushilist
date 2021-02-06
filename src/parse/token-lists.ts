@@ -17,13 +17,18 @@ export type TokenListStoreType = z.infer<typeof TokenListStore>;
 export const TokenListStoreRecord = z.record(TokenListStore);
 export type TokenListStoreRecordType = z.infer<typeof TokenListStoreRecord>;
 
+/** 
+
+TODO
+
 const omitTokenWithTag = (tokens: any[], tag: string) =>
   tokens.filter(({ tags = [] }: TokenListStoreType) => !tags.includes(tag));
 
 const pickTokenWithTag = (tokens: any[], tag: string) =>
   tokens.filter(({ tags = [] }: TokenListStoreType) => tags.includes(tag));
 
-const { aave, roll } = TokenListEnumSchema.enum;
+  */
+// const { aave, sushibar } = TokenListEnumSchema.enum;
 
 export default async function parseTokenLists() {
   const listsArray = await Promise.all(
@@ -42,19 +47,24 @@ export default async function parseTokenLists() {
 
   return reduceArrayToObject(
     listsArray.map((list: any) => {
-      const listName = Object.keys(list)[0];
+      //     const listName = Object.keys(list)[0];
       const newList = { ...list };
+      /** 
+ 
+TODO
 
-      if (listName === roll) {
-        newList[roll].tokens = omitTokenWithTag(newList[roll].tokens, 'bases');
+      if (listName === sushibar) {
+        newList[sushibar].tokens = omitTokenWithTag(newList[sushibar].tokens, 'bases');
       }
 
-      if (listName === aave) {
-        newList[aave].tokens = [
-          ...pickTokenWithTag(newList[aave].tokens, 'atokenv1'),
-          ...pickTokenWithTag(newList[aave].tokens, 'atokenv2'),
+      if (listName === onsen) {
+        newList[onsen].tokens = [
+          ...pickTokenWithTag(newList[onsen].tokens, '*'),
+          ...pickTokenWithTag(newList[onsen].tokens, '*'),
         ];
       }
+      
+*/
 
       return newList;
     })
