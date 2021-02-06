@@ -1,0 +1,9 @@
+.DS_Store
+node_modules
+*.tgz
+*.tar.gz
+*.zip
+*.log
+coverage
+codecov
+*.pid
